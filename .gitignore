@@ -1,0 +1,15 @@
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Dependencias si el proyecto crece en el futuro
+node_modules/
+
+# Logs y archivos temporales
+*.log
+tmp/
+temp/
+
+# Configuracion local de editores
+.vscode/
+.idea/

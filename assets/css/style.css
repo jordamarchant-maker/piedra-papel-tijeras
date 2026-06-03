@@ -1,0 +1,137 @@
+:root {
+  --color-fondo: #f4f7fb;
+  --color-superficie: #ffffff;
+  --color-principal: #2563eb;
+  --color-principal-oscuro: #1d4ed8;
+  --color-texto: #1f2937;
+  --color-texto-suave: #6b7280;
+  --color-borde: #dbe3ef;
+  --sombra-suave: 0 12px 30px rgba(31, 41, 55, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+}
+
+/* Contenedor principal: limita el ancho para que el contenido sea facil de leer. */
+.contenedor {
+  width: min(92%, 900px);
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.encabezado {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.encabezado h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.encabezado p {
+  max-width: 640px;
+  margin: 0 auto;
+  color: var(--color-texto-suave);
+  line-height: 1.6;
+}
+
+.panel-juego,
+.panel-resultado,
+.desafios-extra {
+  padding: 24px;
+  margin-bottom: 20px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  box-shadow: var(--sombra-suave);
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+}
+
+/* Los botones usan flex para acomodarse bien en pantallas grandes y pequenas. */
+.opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.boton-jugada {
+  flex: 1 1 160px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  background: var(--color-principal);
+  border: none;
+  border-radius: 8px;
+}
+
+.boton-jugada:hover {
+  background: var(--color-principal-oscuro);
+}
+
+.boton-jugada:focus {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 3px;
+}
+
+.resultado-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.resultado-item {
+  padding: 18px;
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  background: #f9fbff;
+}
+
+.resultado-item h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.resultado-item p {
+  margin: 0;
+  color: var(--color-texto-suave);
+}
+
+.resultado-final {
+  border-color: var(--color-principal);
+}
+
+.desafios-extra {
+  min-height: 120px;
+}
+
+/* Ajustes responsive para que las tarjetas se apilen en celulares. */
+@media (max-width: 700px) {
+  .contenedor {
+    padding: 24px 0;
+  }
+
+  .panel-juego,
+  .panel-resultado,
+  .desafios-extra {
+    padding: 18px;
+  }
+
+  .resultado-grid {
+    grid-template-columns: 1fr;
+  }
+}

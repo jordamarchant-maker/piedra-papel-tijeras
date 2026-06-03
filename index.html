@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Challenge - Piedra Papel o Tijeras</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <main class="contenedor">
+    <section class="encabezado">
+      <h1>Piedra, Papel o Tijeras</h1>
+      <p>
+        Elige una opción para jugar contra la computadora. Completa la lógica en
+        Javascript para mostrar las elecciones y el resultado de cada partida.
+      </p>
+    </section>
+
+    <section class="panel-juego" aria-labelledby="opciones-titulo">
+      <h2 id="opciones-titulo">Elige tu jugada</h2>
+
+      <div class="opciones" role="group" aria-label="Opciones de juego">
+        <button class="boton-jugada" type="button" data-jugada="piedra">
+          Piedra
+        </button>
+        <button class="boton-jugada" type="button" data-jugada="papel">
+          Papel
+        </button>
+        <button class="boton-jugada" type="button" data-jugada="tijeras">
+          Tijeras
+        </button>
+      </div>
+    </section>
+
+    <section class="panel-resultado" aria-labelledby="resultado-titulo">
+      <h2 id="resultado-titulo">Resultado de la partida</h2>
+
+      <div class="resultado-grid">
+        <article class="resultado-item">
+          <h3>Elección del jugador</h3>
+          <p id="jugada-jugador">Pendiente</p>
+        </article>
+
+        <article class="resultado-item">
+          <h3>Elección de la computadora</h3>
+          <p id="jugada-computadora">Pendiente</p>
+        </article>
+
+        <article class="resultado-item resultado-final">
+          <h3>Resultado</h3>
+          <p id="resultado">Presiona un botón para comenzar.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="desafios-extra" aria-labelledby="desafios-titulo">
+      <h2 id="desafios-titulo">Desafíos Extra</h2>
+    </section>
+  </main>
+
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
