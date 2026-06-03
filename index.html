@@ -11,8 +11,8 @@
     <section class="encabezado">
       <h1>Piedra, Papel o Tijeras</h1>
       <p>
-        Elige una opción para jugar contra la computadora. Completa la lógica en
-        Javascript para mostrar las elecciones y el resultado de cada partida.
+        Elige una opción para jugar contra la computadora. Cada partida muestra
+        las elecciones, el resultado y un historial de las últimas rondas.
       </p>
     </section>
 
@@ -54,7 +54,25 @@
     </section>
 
     <section class="desafios-extra" aria-labelledby="desafios-titulo">
-      <h2 id="desafios-titulo">Desafíos Extra</h2>
+      <h2 id="desafios-titulo">Marcador</h2>
+
+      <div class="marcador" aria-label="Contador de victorias">
+        <div class="marcador-item marcador-jugador">
+          <span class="marcador-etiqueta">Tus victorias</span>
+          <strong id="victorias-jugador">0</strong>
+        </div>
+        <div class="marcador-item marcador-empate">
+          <span class="marcador-etiqueta">Empates</span>
+          <strong id="empates">0</strong>
+        </div>
+        <div class="marcador-item marcador-computadora">
+          <span class="marcador-etiqueta">Victorias PC</span>
+          <strong id="victorias-computadora">0</strong>
+        </div>
+      </div>
+
+      <h3 class="historial-titulo">Historial de partidas</h3>
+      <ul id="historial-partidas" class="historial-lista"></ul>
     </section>
   </main>
 

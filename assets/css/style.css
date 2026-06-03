@@ -77,6 +77,7 @@ h2 {
   background: var(--color-principal);
   border: none;
   border-radius: 8px;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .boton-jugada:hover {
@@ -86,6 +87,12 @@ h2 {
 .boton-jugada:focus {
   outline: 3px solid rgba(37, 99, 235, 0.35);
   outline-offset: 3px;
+}
+
+.boton-jugada.activo {
+  background: var(--color-principal-oscuro);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
 }
 
 .resultado-grid {
@@ -113,6 +120,118 @@ h2 {
 
 .resultado-final {
   border-color: var(--color-principal);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.resultado-final.resultado-ganaste {
+  border-color: #16a34a;
+  background: #f0fdf4;
+}
+
+.resultado-final.resultado-perdiste {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.resultado-final.resultado-empate {
+  border-color: #ca8a04;
+  background: #fefce8;
+}
+
+.resultado-final.animar {
+  animation: pulso-resultado 0.45s ease;
+}
+
+@keyframes pulso-resultado {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.marcador {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.marcador-item {
+  padding: 16px;
+  text-align: center;
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  background: #f9fbff;
+}
+
+.marcador-etiqueta {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+}
+
+.marcador-item strong {
+  font-size: 1.8rem;
+}
+
+.marcador-jugador strong {
+  color: #16a34a;
+}
+
+.marcador-computadora strong {
+  color: #dc2626;
+}
+
+.marcador-empate strong {
+  color: #ca8a04;
+}
+
+.historial-titulo {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+}
+
+.historial-lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.historial-item {
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-left: 4px solid var(--color-borde);
+  border-radius: 6px;
+  background: #f9fbff;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-texto-suave);
+}
+
+.historial-ganaste {
+  border-left-color: #16a34a;
+}
+
+.historial-perdiste {
+  border-left-color: #dc2626;
+}
+
+.historial-empate {
+  border-left-color: #ca8a04;
+}
+
+.historial-vacio {
+  padding: 12px 14px;
+  color: var(--color-texto-suave);
+  font-style: italic;
 }
 
 .desafios-extra {
@@ -132,6 +251,10 @@ h2 {
   }
 
   .resultado-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .marcador {
     grid-template-columns: 1fr;
   }
 }
