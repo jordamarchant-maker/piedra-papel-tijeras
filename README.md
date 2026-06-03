@@ -15,9 +15,7 @@ Construir un juego funcional utilizando HTML, CSS y Javascript.
 - Historial de partidas
 - Contador de victorias
 - Animaciones
-- LocalStorage
 - Mejoras visuales
-- Nuevas reglas
 
 ## Entrega
 
