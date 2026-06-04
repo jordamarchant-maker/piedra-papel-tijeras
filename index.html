@@ -1,81 +1,181 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Piedra Papel o Tijeras</title>
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Piedra Papel o Tijeras — Desafío Full Stack JavaScript" />
+  <title>Piedra Papel o Tijeras 🎮</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
+
 <body>
-  <main class="contenedor">
-    <section class="encabezado">
-      <h1>Piedra, Papel o Tijeras</h1>
-      <p>
-        Elige una opción para jugar contra la computadora. Cada partida muestra
-        las elecciones, el resultado y un historial de las últimas rondas.
-      </p>
+  <!-- Animated background grid -->
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <div class="wrapper">
+
+    <!-- ======================================
+         HEADER
+    ======================================= -->
+    <header class="site-header">
+      <div class="logo-badge">⚡ Desafío Full Stack JS</div>
+      <h1 class="site-title">
+        <span class="pink">PIEDRA</span>
+        <br />
+        <span class="blue">PAPEL</span>
+        &nbsp;o&nbsp;
+        <span class="green">TIJERAS</span>
+      </h1>
+      <p class="site-subtitle">Juega contra la computadora</p>
+    </header>
+
+    <!-- ======================================
+         MARCADOR
+    ======================================= -->
+    <section class="panel" aria-label="Marcador">
+      <div class="scoreboard">
+        <div class="score-item wins">
+          <span class="score-label">Victorias</span>
+          <span class="score-value" id="score-victorias">0</span>
+        </div>
+        <div class="score-item draws">
+          <span class="score-label">Empates</span>
+          <span class="score-value" id="score-empates">0</span>
+        </div>
+        <div class="score-item losses">
+          <span class="score-label">Derrotas</span>
+          <span class="score-value" id="score-derrotas">0</span>
+        </div>
+      </div>
     </section>
 
-    <section class="panel-juego" aria-labelledby="opciones-titulo">
-      <h2 id="opciones-titulo">Elige tu jugada</h2>
+    <!-- ======================================
+         ARENA DE BATALLA
+    ======================================= -->
+    <section class="panel" aria-label="Arena de batalla">
+      <p class="arena-label">⚔ Batalla en curso</p>
 
-      <div class="opciones" role="group" aria-label="Opciones de juego">
-        <button class="boton-jugada" type="button" data-jugada="piedra">
-          Piedra
+      <div class="arena-row">
+
+        <!-- Jugador -->
+        <div class="combatant player">
+          <span class="combatant-name">— TÚ —</span>
+          <div class="choice-display" id="player-display" aria-label="Tu elección">?</div>
+          <span class="choice-name" id="player-name"></span>
+        </div>
+
+        <!-- VS / Thinking -->
+        <div class="vs-block" aria-hidden="true">
+          <span class="vs-text">VS</span>
+          <div class="thinking-dots" id="thinking-dots">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- Computadora -->
+        <div class="combatant computer">
+          <span class="combatant-name">— PC —</span>
+          <div class="choice-display" id="computer-display" aria-label="Elección computadora">?</div>
+          <span class="choice-name" id="computer-name"></span>
+        </div>
+
+      </div>
+
+      <!-- Resultado -->
+      <div class="result-display" role="status" aria-live="polite">
+        <div class="result-badge" id="result-badge">
+          <span class="result-emoji" id="result-emoji"></span>
+          <span id="result-text"></span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ======================================
+         BOTONES DE JUGADA
+    ======================================= -->
+    <section class="panel" aria-label="Elige tu jugada">
+      <p class="actions-title">▸ elige tu jugada ◂</p>
+      <div class="buttons-grid">
+
+        <button class="btn-choice" data-jugada="piedra" aria-label="Jugar Piedra (tecla 1 o R)">
+          <span class="btn-emoji" aria-hidden="true">🪨</span>
+          <span class="btn-label">Piedra</span>
+          <span class="btn-key">Tecla 1 / R</span>
         </button>
-        <button class="boton-jugada" type="button" data-jugada="papel">
-          Papel
+
+        <button class="btn-choice" data-jugada="papel" aria-label="Jugar Papel (tecla 2 o P)">
+          <span class="btn-emoji" aria-hidden="true">📄</span>
+          <span class="btn-label">Papel</span>
+          <span class="btn-key">Tecla 2 / P</span>
         </button>
-        <button class="boton-jugada" type="button" data-jugada="tijeras">
-          Tijeras
+
+        <button class="btn-choice" data-jugada="tijeras" aria-label="Jugar Tijeras (tecla 3 o T)">
+          <span class="btn-emoji" aria-hidden="true">✂️</span>
+          <span class="btn-label">Tijeras</span>
+          <span class="btn-key">Tecla 3 / T</span>
         </button>
+
       </div>
     </section>
 
-    <section class="panel-resultado" aria-labelledby="resultado-titulo">
-      <h2 id="resultado-titulo">Resultado de la partida</h2>
+    <!-- ======================================
+         HISTORIAL DE PARTIDAS
+    ======================================= -->
+    <section class="panel" aria-label="Historial de partidas">
+      <div class="history-header">
+        <h2 class="history-title">📜 Historial</h2>
+        <span class="history-count" id="historial-count"></span>
+      </div>
 
-      <div class="resultado-grid">
-        <article class="resultado-item">
-          <h3>Elección del jugador</h3>
-          <p id="jugada-jugador">Pendiente</p>
-        </article>
+      <!-- Estado vacío -->
+      <div id="historial-empty" class="history-empty">
+        <div class="history-empty-icon">🎯</div>
+        <p class="history-empty-text">Aún no hay partidas</p>
+        <p class="history-empty-sub">¡Elige tu primera jugada para comenzar!</p>
+      </div>
 
-        <article class="resultado-item">
-          <h3>Elección de la computadora</h3>
-          <p id="jugada-computadora">Pendiente</p>
-        </article>
-
-        <article class="resultado-item resultado-final">
-          <h3>Resultado</h3>
-          <p id="resultado">Presiona un botón para comenzar.</p>
-        </article>
+      <!-- Lista de rondas -->
+      <div class="history-list" id="historial-list" role="list" aria-label="Últimas 10 partidas">
       </div>
     </section>
 
-    <section class="desafios-extra" aria-labelledby="desafios-titulo">
-      <h2 id="desafios-titulo">Marcador</h2>
-
-      <div class="marcador" aria-label="Contador de victorias">
-        <div class="marcador-item marcador-jugador">
-          <span class="marcador-etiqueta">Tus victorias</span>
-          <strong id="victorias-jugador">0</strong>
+    <!-- ======================================
+         REGLAS
+    ======================================= -->
+    <section class="panel" aria-label="Reglas del juego">
+      <div class="rules-grid">
+        <div class="rule-item">
+          <div class="rule-formula">🪨 &gt; ✂️</div>
+          <p class="rule-text">Piedra vence Tijeras</p>
         </div>
-        <div class="marcador-item marcador-empate">
-          <span class="marcador-etiqueta">Empates</span>
-          <strong id="empates">0</strong>
+        <div class="rule-item">
+          <div class="rule-formula">📄 &gt; 🪨</div>
+          <p class="rule-text">Papel vence Piedra</p>
         </div>
-        <div class="marcador-item marcador-computadora">
-          <span class="marcador-etiqueta">Victorias PC</span>
-          <strong id="victorias-computadora">0</strong>
+        <div class="rule-item">
+          <div class="rule-formula">✂️ &gt; 📄</div>
+          <p class="rule-text">Tijeras vence Papel</p>
         </div>
       </div>
-
-      <h3 class="historial-titulo">Historial de partidas</h3>
-      <ul id="historial-partidas" class="historial-lista"></ul>
     </section>
-  </main>
 
-  <script src="./assets/js/script.js"></script>
+    <!-- ======================================
+         RESET
+    ======================================= -->
+    <button class="btn-reset" id="btn-reset" aria-label="Reiniciar juego">
+      🔄 Reiniciar juego
+    </button>
+
+    <!-- ======================================
+         FOOTER
+    ======================================= -->
+    <footer>
+      Piedra Papel o Tijeras — Desafío <span>Full Stack JavaScript</span> &nbsp;•&nbsp; HTML + CSS + JS puro
+    </footer>
+
+  </div><!-- /wrapper -->
+
+  <script src="assets/js/script.js"></script>
 </body>
 </html>
